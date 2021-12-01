@@ -1,5 +1,3 @@
-#!/usr/bin/env zx
-
 export function part1(input) {
   const numbers = input.split('\n').map(line => parseInt(line))
 
@@ -32,11 +30,4 @@ export function part2(input) {
   }
 
   return increases
-}
-
-if (typeof $ === 'function') {
-  const input = fs.readFileSync('input.txt').toString().trimEnd()
-
-  console.log(part1(input))
-  console.log(part2(input))
 }
