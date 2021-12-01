@@ -1,7 +1,6 @@
-export function part1(input) {
-  const numbers = input.split('\n').map(line => parseInt(line))
-
+function countIncreases(numbers) {
   let increases = 0
+
   for (let i = 1; i < numbers.length; i++) {
     if (numbers[i - 1] < numbers[i]) {
       increases += 1
@@ -9,6 +8,12 @@ export function part1(input) {
   }
 
   return increases
+}
+
+export function part1(input) {
+  const numbers = input.split('\n').map(line => parseInt(line))
+
+  return countIncreases(numbers)
 }
 
 export function part2(input) {
@@ -22,12 +27,5 @@ export function part2(input) {
     sums.push(numbers[i - 2] + numbers[i - 1] + numbers[i])
   }
 
-  let increases = 0
-  for (let i = 1; i < sums.length; i++) {
-    if (sums[i - 1] < sums[i]) {
-      increases += 1
-    }
-  }
-
-  return increases
+  return countIncreases(sums)
 }
