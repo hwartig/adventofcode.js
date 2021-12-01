@@ -23,7 +23,7 @@ test('part2', () => {
 console.log(process.cwd())
 
 test('real input', () => {
-  const input = readFileSync('./input.txt').toString().trimEnd()
+  const input = readFileSync('./01/input.txt').toString().trimEnd()
 
   expect(part1(input)).toEqual(1624)
   expect(part2(input)).toEqual(1653)
