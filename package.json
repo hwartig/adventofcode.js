@@ -1,0 +1,22 @@
+{
+  "name": "adventofcode",
+  "version": "1.0.0",
+  "description": "Advent of Code 2021 Solutions in Javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --watchAll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hwartig/adventofcode.js.git"
+  },
+  "author": "Harald Wartig",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hwartig/adventofcode.js/issues"
+  },
+  "homepage": "https://github.com/hwartig/adventofcode.js#readme",
+  "devDependencies": {
+    "jest": "^27.4.2"
+  }
+}
