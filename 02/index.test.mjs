@@ -16,8 +16,6 @@ test('part2', () => {
   expect(part2(exampleInput)).toEqual(900)
 })
 
-console.log(process.cwd())
-
 test('real input', () => {
   const input = readFileSync('./02/input.txt').toString().trimEnd()
 
