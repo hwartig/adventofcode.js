@@ -1,8 +1,8 @@
-function countIncreases(numbers) {
+function countIncreases(numbers, indexDistance = 1) {
   let increases = 0
 
-  for (let i = 1; i < numbers.length; i++) {
-    if (numbers[i - 1] < numbers[i]) {
+  for (let i = indexDistance; i < numbers.length; i++) {
+    if (numbers[i - indexDistance] < numbers[i]) {
       increases += 1
     }
   }
@@ -17,15 +17,7 @@ export function part1(input) {
 }
 
 export function part2(input) {
-  const lines = input.split('\n')
+  const numbers = input.split('\n').map(line => parseInt(line))
 
-  const numbers = lines.map(line => parseInt(line))
-
-  let sums = []
-
-  for (let i = 2; i < numbers.length; i++) {
-    sums.push(numbers[i - 2] + numbers[i - 1] + numbers[i])
-  }
-
-  return countIncreases(sums)
+  return countIncreases(numbers, 3)
 }
