@@ -1,5 +1,5 @@
 function parseInput(input) {
-  const parts = input.split('\n\n')
+  const parts = input.trimEnd().split('\n\n')
   const numberSequence = parts[0].split(',').map(n => parseInt(n))
   let cards = parts.slice(1).map(part => {
     const lines = part.split('\n').map(line => {
