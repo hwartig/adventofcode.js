@@ -12,60 +12,26 @@ export const parseInput = (input) => input.split('\n').map(line => line.split('-
   return acc
 }, {})
 
+function countWaysTo(graph, secondVisitAvailable = true, currentNode = 'start', currentPath = ['start']) {
+  return graph[currentNode].reduce((acc, node) => {
+    if (node == 'start') return acc
+    if (node == 'end') return acc + 1
+
+    if (node.toLowerCase() == node && currentPath.includes(node)) {
+      if (secondVisitAvailable) {
+        return acc + countWaysTo(graph, false, node, [...currentPath, node])
+      }
+      return acc
+    }
+
+    return acc + countWaysTo(graph, secondVisitAvailable, node, [...currentPath, node])
+  }, 0)
+}
 
 export function part1(input) {
-  const graph = parseInput(input)
-
-  const visits = Object.fromEntries(Object.keys(graph).map(node => [node, 0]))
-
-  const countWaysTo = (currentNode = 'start', currentPath = ['start']) => {
-    return graph[currentNode].forEach(node => {
-
-      if (node == 'start' || (node.toLowerCase() == node && currentPath.includes(node))) return
-
-      visits[node] += 1
-
-      if (node == 'end') return
-
-      countWaysTo(node, [...currentPath, node])
-    })
-  }
-
-  countWaysTo()
-
-  return visits['end']
+  return countWaysTo(parseInput(input), false)
 }
 
 export function part2(input) {
-  const graph = parseInput(input)
-
-  const visits = Object.fromEntries(Object.keys(graph).map(node => [node, 0]))
-
-  const countWaysTo = (currentNode = 'start', currentPath = ['start'], secondVisitAvailable = true) => {
-    visits[currentNode] += 1
-
-    return graph[currentNode].forEach(node => {
-      if (node == 'start') return
-
-      if (node == 'end') {
-        //console.log('end', visits)
-        //console.log([...currentPath, 'end'].join(','))
-        visits['end'] += 1
-        return
-      }
-
-      //console.log(secondVisitAvailable, [...currentPath, 'end'].join(','))
-
-      if (node.toLowerCase() == node && currentPath.includes(node)) {
-        if (secondVisitAvailable) {
-          countWaysTo(node, [...currentPath, node], false)
-        }
-      } else {
-        countWaysTo(node, [...currentPath, node], secondVisitAvailable)
-      }
-    })
-  }
-
-  countWaysTo()
-  return visits['end']
+  return countWaysTo(parseInput(input))
 }
